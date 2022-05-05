@@ -1,0 +1,3 @@
+[submodule "silent_speech"]
+	path = silent_speech
+	url = https://github.com/MiscellaneousStuff/silent_speech
