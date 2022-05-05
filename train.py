@@ -50,16 +50,16 @@ FLAGS = flags.FLAGS
 flags.DEFINE_integer("n_epochs", 100,\
      "Recommended epochs is 200 for closed vocab and 100 for the others")
 flags.DEFINE_integer("random_seed", 7, \
-    "(Optional) Set a different random seed if you train a different model."
+    "(Optional) Set a different random seed if you train a different model.\n"
     "The models trained along with this release used a random seed of 7 by default.")
 flags.DEFINE_boolean("semg_train", False, \
-    "(Optional) Train an ASR model on predicted mel spectrograms from the transducer."
+    "(Optional) Train an ASR model on predicted mel spectrograms from the transducer.\n"
     "Otherwise train on the ground truth audio files.")
 flags.DEFINE_boolean("silent_only", False, \
-    "(Optional) Transduction dataset only."
+    "(Optional) Transduction dataset only.\n"
     "Train only on the mel spectrograms predicted from EMG signals during silent speech")
 flags.DEFINE_boolean("voiced_only", False, \
-    "(Optional) Transduction dataset only."
+    "(Optional) Transduction dataset only.\n"
     "Train only on the mel spectrograms predicted from EMG signals during vocalised speech")
 flags.DEFINE_boolean("amp", False, \
     "(Optional) Train using Automatic Mixed Precision (AMP)")

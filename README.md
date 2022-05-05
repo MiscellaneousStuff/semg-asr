@@ -53,6 +53,16 @@ git submodule init
 git submodule update
 ```
 
+## Train
+
+To train an sEMG Silent Speech speech recognition model, use
+
+```bash
+python3 train.py \
+    --dataset_path "path_to_dataset.csv" \
+    --semg_train
+```
+
 ## Evaluate
 
 To evaluate the best trained model released with the report, run the
@@ -62,6 +72,7 @@ following code:
 python3 evaluate.py \
     --checkpoint_path "path_to_pretrained_model/ds2_DATASET_SILENT_SPEECH_EPOCHS_10_TEST_LOSS_1.8498832106590273_WER_0.6825681123095443" \
     --dataset_path "path_to_dataset.csv" \
+    --print_top 10 \
     --semg_eval
 ```
 
