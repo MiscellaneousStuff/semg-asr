@@ -13,9 +13,11 @@ synthesis papers "Digital Voicing of Silent Speech" at EMNLP 2020 and
 "An Improved Model for Voicing Silent Speech" at ACL 2021. These papers provided
 a method to transduce silent speech surface EMG (sEMG) signals directly
 into speech features (either MFCCs or mel spectrograms). This project goes one step
-further and uses the predicted mel spectrograms from the transduction model and
-directly performs speech recognition on these speech features to produce a highly
-efficient silent speech recognition system.
+further and uses the predicted speech features (mel spectrograms)
+from the transduction model to directly perform speech recognition. To perform
+this process with the current SOTA transduction model, you would have to use
+the vocoder inbetween the transduction model and the deepspeech-0.7.0 model
+used for the evaluations.
 
 ## Data
 
