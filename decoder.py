@@ -26,6 +26,14 @@ sequences."""
 
 import torch
 
+from torchnlp.encoders import LabelEncoder
+
+closed_characters     = [x for x in " abcdefghijklmnopqrstuvwxyz0123456789-"]
+open_characters       = [x for x in " abcdefghijklmnopqrstuvwxyz-"]
+
+closed_vocab_encoder  = LabelEncoder(closed_characters)
+open_vocab_encoder    = LabelEncoder(open_characters)
+
 def GreedyDecoder(output, labels, label_lengths, encoder, blank_label=28,\
                   collapse_repeated=True):
     """Decodes the predicted text transcription by picking the character

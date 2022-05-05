@@ -27,7 +27,7 @@ import torch
 import torchaudio
 
 
-class SilentSpeech(torch.utils.data.Dataset):
+class SilentSpeechDataset(torch.utils.data.Dataset):
     """Regular speech recognition dataset which contains audio wave forms as
     in the input and text transcriptions as the target from the silent speech
     dataset."""
@@ -56,7 +56,7 @@ class SilentSpeech(torch.utils.data.Dataset):
         return len(self._flist)
 
 
-class SilentSpeechPred(torch.utils.data.Dataset):
+class SilentSpeechPredDataset(torch.utils.data.Dataset):
     """Custom speech recognition dataset which contains predicted mel
     spectrograms from the transduction model as the input and the text
     transcriptions as the target."""

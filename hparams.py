@@ -24,9 +24,7 @@ SpeechRecognitionModel hyperparameters and to make it easier to log the
 hyperparameters during training."""
 
 def get_hparams(n_class,
-                learning_rate,
-                epochs,
-                batch_size,
+                learning_rate=5e-4,
                 n_cnn_layers=3,
                 n_rnn_layers=5,
                 rnn_dim=512,
@@ -42,7 +40,5 @@ def get_hparams(n_class,
         "stride":        stride,
         "dropout":       dropout,
         "learning_rate": learning_rate,
-        "batch_size":    batch_size,
-        "epochs":        epochs
     }
     return hparams
