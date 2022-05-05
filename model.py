@@ -19,6 +19,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+"""This module contains a modern version of the DeepSpeech2 speech recognition
+model which comes from from Michael Nguyen, Machine Learning Research Engineer
+at AssemblyAI and Niko Laskaris at Comet.ml"""
 
 import torch.nn as nn
 import torch.nn.functional as F
