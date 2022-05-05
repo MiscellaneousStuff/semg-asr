@@ -39,16 +39,24 @@ class SilentSpeechDataset(torch.utils.data.Dataset):
             if dataset_type:
                 for fi in self._flist:
                     line = fi
-                    _, _, cur_dataset_type, _ = line
+                    _, _, cur_dataset_type, _, _, _ = line
                     if cur_dataset_type == dataset_type:
                         fis.append(fi)
             else:
                 Exception("No dataset type specified for SilentSpeech() dataset.""")
             self._flist = fis
 
+    def get_exact(self, book, sentence_idx):
+        lines = [fi for fi in self._flist
+                 if fi[-2] == book and fi[-1] == sentence_idx]
+        line = lines[0]
+        cur_path, text, dataset_type, _, _, _ = line
+        waveform, sr = torchaudio.load(cur_path)
+        return (waveform, sr, text, dataset_type)
+
     def __getitem__(self, n):
         line = self._flist[n]
-        cur_path, text, dataset_type, _ = line
+        cur_path, text, dataset_type, _, _, _ = line
         waveform, sr = torchaudio.load(cur_path)
         return (waveform, sr, text, dataset_type)
 
@@ -70,7 +78,7 @@ class SilentSpeechPredDataset(torch.utils.data.Dataset):
             if dataset_type:
                 for fi in self._flist:
                     line = fi
-                    _, _, cur_dataset_type, modality = line
+                    _, _, cur_dataset_type, modality, _, _ = line
                     if cur_dataset_type == dataset_type:
                         if silent_only and modality == "silent":
                             fis.append(fi)
@@ -85,9 +93,15 @@ class SilentSpeechPredDataset(torch.utils.data.Dataset):
 
             self._flist = fis
 
+    def get_item_vis(self, n):
+        line = self._flist[n]
+        cur_path, text, dataset_type, _, book, sentence_idx = line
+        mel_spectrogram = torch.load(cur_path)
+        return (mel_spectrogram, text, dataset_type, book, sentence_idx)
+
     def __getitem__(self, n):
         line = self._flist[n]
-        cur_path, text, dataset_type, _ = line
+        cur_path, text, dataset_type, _, _, _ = line
         mel_spectrogram = torch.load(cur_path)
         return (mel_spectrogram, text, dataset_type)
 

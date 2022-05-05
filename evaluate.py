@@ -69,7 +69,7 @@ def evaluate(model, test_loader, device, criterion, encoder):
 
     with torch.no_grad():
         for i, _data in enumerate(test_loader):
-            spectrograms, labels, input_lengths, label_lengths = _data 
+            spectrograms, labels, input_lengths, label_lengths = _data
             spectrograms, labels = spectrograms.to(device), labels.to(device)
 
             output = model(spectrograms)  # (batch, time, n_class)

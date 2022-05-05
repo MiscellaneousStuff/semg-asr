@@ -133,3 +133,6 @@ models/
 
 # Ignore dataset CSV files
 *.csv
+
+# Ignore testset visualisations
+testset_visuals/

@@ -130,7 +130,8 @@ def main(unused_argv):
                                 if sentence_idx in valid_idxs:
                                     dataset = "valid"  
                             
-                            csv_writer.writerow([audio_path, text, dataset, modality])
+                            csv_writer.writerow(\
+                                [audio_path, text, dataset, modality, book, sentence_idx])
 def entry_point():
     app.run(main)
 
