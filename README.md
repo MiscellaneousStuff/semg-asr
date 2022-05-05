@@ -2,7 +2,9 @@
 
 ## About
 
-This module is produced as part of the requirement for my Final Year Project for my BSc Computer Science degree requirement at the University of Portsmouth. This module represents
+This module is produced as part of the requirement for my Final Year Project
+for my BSc Computer Science degree requirement at the University of Portsmouth.
+This module represents
 the second round of experimentation for my research project which involves
 producing a speech recognition system for sEMG silent speech.
 

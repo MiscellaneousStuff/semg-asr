@@ -91,7 +91,7 @@ def evaluate(model, test_loader, device, criterion, encoder):
                 test_cer.append(cur_cer)
                 test_wer.append(cur_wer)
 
-                scored_preds.append([cur_ground, cur_pred, cur_wer])
+                scored_preds.append([cur_ground, cur_pred, cur_wer, cur_cer])
 
     avg_cer = sum(test_cer) / len(test_cer)
     avg_wer = sum(test_wer) / len(test_wer)
@@ -111,8 +111,9 @@ def evaluate(model, test_loader, device, criterion, encoder):
             ground     = pred[0].replace("<unk>", "")
             prediction = pred[1].replace("<unk>", "")
 
-            score  = pred[2]
-            print(f"{i+1}.\n Target:     {ground}\n Prediction: {prediction}\n WER: {score:4f}")
+            score      = pred[2]
+            char_score = pred[3]
+            print(f"{i+1}.\n Target:     {ground}\n Prediction: {prediction}\n WER: {score:4f} CER: {char_score:4f}")
 
 def main(unused_argv):
     checkpoint_path = FLAGS.checkpoint_path
