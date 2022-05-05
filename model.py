@@ -110,16 +110,12 @@ class SpeechRecognitionModel(nn.Module):
         )
 
     def forward(self, x):
-        # print("PRE MODEL INPUT SHAPE:", x.shape)
         x = self.cnn(x)
         x = self.rescnn_layers(x)
-        # print("POST MODEL INPUT SHAPE:", x.shape)
         sizes = x.size()
         x = x.view(sizes[0], sizes[1] * sizes[2], sizes[3])  # (batch, feature, time)
-        # print("VIEWED MODEL INPUT SHAPE:", x.shape)
         x = x.transpose(1, 2) # (batch, time, feature)
         x = self.fully_connected(x)
         x = self.birnn_layers(x)
         x = self.classifier(x)
-        # print("POST-SEQ SHAPE:", x.shape)
         return x
