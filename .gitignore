@@ -130,3 +130,6 @@ dmypy.json
 
 # Ignore saved models
 models/
+
+# Ignore dataset CSV files
+*.csv
