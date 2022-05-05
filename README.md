@@ -30,3 +30,15 @@ The EMG and audio data can be downloaded from
 And the force-aligned phonemes for the dataset (not including the closed
 vocabulary portion of the dataset) can be downloaded from
 [https://github.com/dgaddy/silent_speech_alignments/raw/main/text_alignments.tar.gz](https://github.com/dgaddy/silent_speech_alignments/raw/main/text_alignments.tar.gz).
+
+# Quick Start Guide
+
+## Clone the Repository
+
+You can clone this repository by doing the following:
+
+```bash
+git clone https://github.com/MiscellaneousStuff/semg_asr.git
+git submodule init
+git submodule update
+```
