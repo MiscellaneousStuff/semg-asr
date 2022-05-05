@@ -33,8 +33,8 @@ vocabulary portion of the dataset) can be downloaded from
 
 ## Logging
 
-This project supports optional Neptune.ai based logging by using `.env` with:
-these settings
+This project supports optional Neptune.ai based logging by using `.env` with
+these settings:
 
 ```
 NEPTUNE_PROJECT=<neptune_project_name>
