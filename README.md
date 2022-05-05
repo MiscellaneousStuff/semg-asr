@@ -14,7 +14,8 @@ synthesis papers "Digital Voicing of Silent Speech" at EMNLP 2020 and
 a method to transduce silent speech surface EMG (sEMG) signals directly
 into speech features (either MFCCs or mel spectrograms). This project goes one step
 further and uses the predicted mel spectrograms from the transduction model and
-directly performs speech recognition on these speech features.
+directly performs speech recognition on these speech features to produce a highly
+efficient silent speech recognition system.
 
 ## Data
 
