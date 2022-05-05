@@ -53,6 +53,8 @@ flags.DEFINE_string("dataset_path", None, \
 flags.DEFINE_integer("batch_size", 5, "Sets the batch size for the evaluation")
 flags.DEFINE_boolean("closed_only", False, \
     "(Optional) Evaluate only on the closed vocabulary slice of the dataset")
+flags.DEFINE_integer("print_top", 3, \
+    "(Optional) Set number of most accurate predictions to print")
 flags.mark_flag_as_required("checkpoint_path")
 flags.mark_flag_as_required("dataset_path")
 
@@ -60,6 +62,9 @@ def evaluate(model, test_loader, device, criterion, encoder):
     model.eval()
     test_loss = 0
     test_cer, test_wer = [], []
+
+    # Print the most accurate transcription
+    scored_preds = []
 
     with torch.no_grad():
         for i, _data in enumerate(test_loader):
@@ -78,8 +83,14 @@ def evaluate(model, test_loader, device, criterion, encoder):
                     output.transpose(0, 1), labels, label_lengths, encoder)
             
             for j in range(len(decoded_preds)):
-                test_cer.append(cer(decoded_targets[j], decoded_preds[j]))
-                test_wer.append(wer(decoded_targets[j], decoded_preds[j]))
+                cur_ground = decoded_targets[j]
+                cur_pred   = decoded_preds[j]
+                cur_wer = wer(cur_ground, cur_pred)
+                cur_cer = cer(cur_ground, cur_pred)
+                test_cer.append(cur_cer)
+                test_wer.append(cur_wer)
+
+                scored_preds.append([cur_ground, cur_pred, cur_wer])
 
     avg_cer = sum(test_cer) / len(test_cer)
     avg_wer = sum(test_wer) / len(test_wer)
@@ -87,6 +98,20 @@ def evaluate(model, test_loader, device, criterion, encoder):
     print(\
         'Test set: Average loss: {:.4f}, Average CER: {:4f} Average WER: {:.4f}\n'\
         .format(test_loss, avg_cer, avg_wer))
+
+    sorted_preds = sorted(scored_preds, key=lambda pred: pred[2])
+
+    print_top = FLAGS.print_top
+    if print_top > 0:
+        sorted_preds = \
+            sorted_preds[0:min(print_top, len(sorted_preds) - 1)]
+        for i, pred in enumerate(sorted_preds):
+            # Get rid of unknown tokens in final output
+            ground     = pred[0].replace("<unk>", "")
+            prediction = pred[1].replace("<unk>", "")
+
+            score  = pred[2]
+            print(f"{i+1}.\n Target:     {ground}\n Prediction: {prediction}\n WER: {score:4f}")
 
 def main(unused_argv):
     checkpoint_path = FLAGS.checkpoint_path

@@ -52,3 +52,23 @@ git clone https://github.com/MiscellaneousStuff/semg_asr.git
 git submodule init
 git submodule update
 ```
+
+## Evaluate
+
+To evaluate the best trained model released with the report, run the
+following code:
+
+```bash
+python3 evaluate.py \
+    --checkpoint_path "path_to_pretrained_model/ds2_DATASET_SILENT_SPEECH_EPOCHS_10_TEST_LOSS_1.8498832106590273_WER_0.6825681123095443" \
+    --dataset_path "path_to_dataset.csv" \
+    --semg_eval
+```
+
+There are a large number of models and different datasets which have
+been evaluated in the report, to find the full list of evaluation conditions
+and how to run them, run:
+
+```bash
+python3 evaluate.py --help
+```
