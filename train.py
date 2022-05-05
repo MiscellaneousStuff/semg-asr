@@ -103,12 +103,12 @@ def get_dataloaders(
         train_loader = data.DataLoader(dataset=train_dataset,
             batch_size=hparams['batch_size'],
             shuffle=True,
-            collate_fn=lambda x: data_processing(x, 'train'),
+            collate_fn=lambda x: data_processing(x, encoder, 'train'),
             **kwargs)
         test_loader = data.DataLoader(dataset=test_dataset,
             batch_size=hparams['batch_size'],
             shuffle=False,
-            collate_fn=lambda x: data_processing(x, 'valid'),
+            collate_fn=lambda x: data_processing(x, encoder, 'valid'),
             **kwargs)
     return train_loader, test_loader
 
