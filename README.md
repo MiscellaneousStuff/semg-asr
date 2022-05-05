@@ -65,14 +65,41 @@ python3 train.py \
     --semg_train
 ```
 
+## Create Dataset
+
+There are two main types of datasets which can be used with this module,
+the first one is a regular ASR model which performs speech recognition
+on the ground truth audio files. To create a dataset like this, use:
+
+```bash
+python3 create_dataset.py \
+    --emg_dir "./silent_speech/emg_data" \
+    --testset_path "./silent_speech/testset_largedev.json"
+```
+
+Whereas if you want to create a dataset which that uses the predicted
+mel spectrograms from the transduction model which you have
+already generated, use:
+
+```bash
+python3 create_dataset.py \
+    --emg_dir "./silent_speech/emg_data" \
+    --testset_path "./silent_speech/testset_largedev.json" \
+    --semg_preds_path "./silent_speech/pred_audio"
+```
+
 ## Evaluate
 
-To evaluate the best trained model released with the report, run the
-following code:
+To evaluate the best trained model released with the report,
+download the model from
+[Google Drive](https://drive.google.com/file/d/1O8jIWV1v0orE4kOVA6IG-FgYyFO8OMDH/view?usp=sharing)
+into this directory.
+Then create a dataset of the full EMG data predictions using
+the above instructions and run the following code:
 
 ```bash
 python3 evaluate.py \
-    --checkpoint_path "path_to_pretrained_model/ds2_DATASET_SILENT_SPEECH_EPOCHS_10_TEST_LOSS_1.8498832106590273_WER_0.6825681123095443" \
+    --checkpoint_path "ds2_DATASET_SILENT_SPEECH_EPOCHS_10_TEST_LOSS_1.8498832106590273_WER_0.6825681123095443" \
     --dataset_path "path_to_dataset.csv" \
     --print_top 10 \
     --semg_eval
