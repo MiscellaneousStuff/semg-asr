@@ -31,6 +31,16 @@ And the force-aligned phonemes for the dataset (not including the closed
 vocabulary portion of the dataset) can be downloaded from
 [https://github.com/dgaddy/silent_speech_alignments/raw/main/text_alignments.tar.gz](https://github.com/dgaddy/silent_speech_alignments/raw/main/text_alignments.tar.gz).
 
+## Logging
+
+This project supports optional Neptune.ai based logging by using `.env` with:
+these settings
+
+```
+NEPTUNE_PROJECT=<neptune_project_name>
+NEPTUNE_TOKEN=<neptune_account_token>
+```
+
 # Quick Start Guide
 
 ## Clone the Repository
