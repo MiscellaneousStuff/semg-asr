@@ -3,3 +3,4 @@ torchaudio
 jiwer
 torchnlp
 numpy
+neptune

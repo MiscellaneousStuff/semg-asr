@@ -44,7 +44,8 @@ from decoder import closed_vocab_encoder, open_vocab_encoder, GreedyDecoder
 FLAGS = flags.FLAGS
 flags.DEFINE_string("checkpoint_path", None, "Path to the pre-trained DeepSpeech2 model")
 flags.DEFINE_boolean("semg_eval", False, \
-    "(Optional) Evaluate an ASR model on predicted mel spectrograms from the transducer")
+    "(Optional) Evaluate an ASR model on predicted mel spectrograms from the transducer."
+    "Otherwise evaluate the ground truth audio files.")
 flags.DEFINE_integer("random_seed", 7, \
     "(Optional) Set a different random seed if you train a different model."
     "The models trained along with this release used a random seed of 7 by default.")
