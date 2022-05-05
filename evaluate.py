@@ -113,7 +113,8 @@ def evaluate(model, test_loader, device, criterion, encoder):
 
             score      = pred[2]
             char_score = pred[3]
-            print(f"{i+1}.\n Target:     {ground}\n Prediction: {prediction}\n WER: {score:4f} CER: {char_score:4f}")
+            print(f"{i+1}.\n Target:     {ground}\n Prediction: {prediction}\n"\
+                   f" WER: {score:4f} CER: {char_score:4f}")
 
 def main(unused_argv):
     checkpoint_path = FLAGS.checkpoint_path
