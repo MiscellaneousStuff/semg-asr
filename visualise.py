@@ -46,6 +46,8 @@ flags.DEFINE_string("testset_path", None, "Path to transduction model testset.js
 flags.DEFINE_boolean("closed_only", False, \
     "(Optional) Evaluate only on the closed vocabulary slice of the dataset")
 flags.DEFINE_integer("max_examples", 10, "Number of testset examples to visualise")
+flags.DEFINE_boolean("match_mels", False, \
+    "Use log() on the ground truth mel spectrogram values.")
 flags.mark_flag_as_required("pred_dataset_path")
 flags.mark_flag_as_required("ground_dataset_path")
 
@@ -71,9 +73,10 @@ def plot_mel_spectrograms(pred, y, text):
     return fig, ax
 
 def main(unused_argv):
-    g_dataset_path    = FLAGS.ground_dataset_path
-    p_dataset_path    = FLAGS.pred_dataset_path
+    g_dataset_path  = FLAGS.ground_dataset_path
+    p_dataset_path  = FLAGS.pred_dataset_path
     closed_only     = FLAGS.closed_only
+    match_mels      = FLAGS.match_mels
 
     # get desired book, sentence_idx
 
@@ -94,7 +97,8 @@ def main(unused_argv):
 
         g_mel_spectrogram = valid_audio_transforms(waveform).squeeze(0).transpose(0, 1)
 
-        g_mel_spectrogram = torch.log(g_mel_spectrogram+1e-5)
+        if match_mels:
+            g_mel_spectrogram = torch.log(g_mel_spectrogram+1e-5)
 
         fig, ax = plot_mel_spectrograms(\
             stack_mel_spectrogram(p_mel_spectrogram),
