@@ -21,6 +21,12 @@ this process with the current SOTA transduction model, you would have to use
 the vocoder inbetween the transduction model and the deepspeech-0.7.0 model
 used for the evaluations.
 
+## Performance
+
+The speech recognition trained uses 115 times less training data than using
+the evaluation function in the original "An Improved Model for Voicing Silent Speech"
+at ACL 2021 paper.
+
 ## Data
 
 The dataset for this project is based on the open-source dataset released
